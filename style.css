@@ -50,3 +50,6 @@
 
 /* V8.1 — remove translucent light bar */
 .shine{display:none!important}
+
+/* V8.2 — remove all loose decorative light artifacts */
+.shine,.flare,.f1,.f2{display:none!important}
