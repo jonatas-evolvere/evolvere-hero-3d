@@ -47,3 +47,6 @@
   .aura{width:min(50vw,78vh)}
   .scroll{display:none}
 }
+
+/* V8.1 — remove translucent light bar */
+.shine{display:none!important}
