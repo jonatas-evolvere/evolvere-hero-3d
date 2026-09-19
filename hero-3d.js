@@ -25,9 +25,9 @@ scene.add(root);
 const amber=new THREE.Color('#ff6b00');
 const honey=new THREE.Color('#ff9b25');
 const shell=new THREE.MeshPhysicalMaterial({
- color:honey,metalness:0,roughness:.025,transmission:.84,thickness:2.1,ior:1.52,
+ color:honey,metalness:0,roughness:.035,transmission:.68,thickness:3.2,ior:1.52,
  transparent:true,opacity:1,clearcoat:1,clearcoatRoughness:.018,
- attenuationColor:new THREE.Color('#ff5a00'),attenuationDistance:.38,
+ attenuationColor:new THREE.Color('#d63b00'),attenuationDistance:.22,
  specularIntensity:1,specularColor:new THREE.Color('#fff4df'),side:THREE.DoubleSide
 });
 const edge=new THREE.MeshPhysicalMaterial({
@@ -46,16 +46,16 @@ new SVGLoader().load('./assets/evolvere-simbolo.svg',data=>{
   for(const shape of SVGLoader.createShapes(path)){
    // Deep bevel + narrow body creates a rounded, lens-like cross section instead of a flat plaque.
    const outer=new THREE.ExtrudeGeometry(shape,{
-    depth:14,steps:1,curveSegments:32,bevelEnabled:true,
-    bevelThickness:15,bevelSize:13,bevelOffset:-2,bevelSegments:18
+    depth:10,steps:1,curveSegments:40,bevelEnabled:true,
+    bevelThickness:28,bevelSize:34,bevelOffset:-18,bevelSegments:24
    });
    outer.computeVertexNormals();
    object.add(new THREE.Mesh(outer,shell));
 
    // Warm inner layer, recessed so the shell remains optically dominant.
    const inner=new THREE.ExtrudeGeometry(shape,{
-    depth:7,steps:1,curveSegments:28,bevelEnabled:true,
-    bevelThickness:8,bevelSize:7,bevelOffset:-7,bevelSegments:12
+    depth:5,steps:1,curveSegments:36,bevelEnabled:true,
+    bevelThickness:17,bevelSize:22,bevelOffset:-24,bevelSegments:18
    });
    inner.computeVertexNormals();
    const innerMesh=new THREE.Mesh(inner,edge);
@@ -105,7 +105,7 @@ function tick(){
  px+=(tx-px)*.018; py+=(ty-py)*.018;
  if(!reduced){
   root.position.y=.02+Math.sin(t*.34)*.026;
-  root.rotation.y=Math.sin(t*.18)*.012+px*.018;
+  root.rotation.y=.10+Math.sin(t*.18)*.022+px*.025;
   root.rotation.x=Math.cos(t*.16)*.006+py*.010;
   root.rotation.z=Math.sin(t*.13)*.003;
   goldKey.position.x=-2.7+Math.sin(t*.22)*.45;
